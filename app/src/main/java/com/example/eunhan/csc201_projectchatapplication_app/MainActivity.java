@@ -36,9 +36,9 @@ import java.util.Map;
 import java.util.TreeSet;
 
 public class MainActivity extends TabActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
-    String pubkey = "put your pubnub publish key";
-    String subkey = "put your pubnub subscribe key";
-    public String channel = "robby";
+    String pubkey = "pub-c-17c6584e-18c7-48fc-80b4-c326a05baff0";
+    String subkey = "sub-c-523a490e-f471-11e6-9c1c-0619f8945a4f";
+    public String channel = "lobby";
     PubNub pubnub;
 
     EditText input;
@@ -97,7 +97,7 @@ public class MainActivity extends TabActivity implements View.OnClickListener, A
 
         this.uuid = mSharedPrefs.getString(this.DATASTREAM_UUID, "");
 
-        intochatlist("[bot channel]"); // add bot channel to chat list
+        intochatlist("[bot channel]");
         connertPubNub(); //connected to pubnub server
         this.pubnub.subscribe().channels(Arrays.asList(channel)).withPresence().execute(); //automatically put into bot chatroom(channel)
         intochatlist(String.valueOf(pubnub.getSubscribedChannels().toString()));// get list of chat lists.
@@ -145,13 +145,35 @@ public class MainActivity extends TabActivity implements View.OnClickListener, A
                             }
                     );}
 
-                input.setText(null);
-
                 break;
             case R.id.cratechatbtn:
 
                 disconnectAndCleanup();
-
+//
+//                SparseBooleanArray checkedItems = userlistview.getCheckedItemPositions();
+//                String s = "";
+//                int count = Adapter.getCount();
+//
+//
+//                for (int i = count - 1; i >= 0; i--) {
+//                    if (checkedItems.get(i)) {
+//                        s += userlist.get(i).substring(0, userlist.get(i).toString().lastIndexOf(":")) + ", ";
+//                    }
+//                }
+//
+////                this.channel = s.substring(0, s.toString().lastIndexOf(","));
+//                this.pubnub.unsubscribeAll();
+//                this.channel = "bot channel";
+//                this.pubnub.subscribe().channels(Arrays.asList(channel)).withPresence().execute();
+//
+//                s = s.substring(0, s.toString().lastIndexOf(",")) + "-chatroom created";
+//                Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+//
+//                // 모든 선택 상태 초기화.
+//                userlistview.clearChoices();
+//
+//                tabHost.setCurrentTab(2);// tab moving
+//
                 break;
         }
 
